@@ -2,7 +2,7 @@
 name = "howto"
 version = "0.1.0"
 authors = ["Kevin Herro <herro@sent.com>"]
-description = "Generate a terminal command from natural language"
+description = "Generate a terminal command with natural language"
 edition = "2021"
 license = "MIT"
 
