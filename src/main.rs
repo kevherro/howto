@@ -94,7 +94,7 @@ fn prepare_payload(query: &str) -> serde_json::Value {
     let user_content = format!("What is the command to {}?", query);
 
     json!({
-        "model": "gpt-4-turbo-preview",
+        "model": "gpt-4-turbo",
         "messages": [
             { "role": "system", "content": system_content },
             { "role": "user", "content": user_content }
