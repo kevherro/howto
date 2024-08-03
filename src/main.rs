@@ -27,6 +27,7 @@ use serde_json::json;
 use std::env;
 
 const URL: &str = "https://api.openai.com/v1/chat/completions";
+const MODEL: &str = "gpt-4o-mini";
 
 #[derive(Debug, Deserialize)]
 struct ApiResponse {
@@ -87,14 +88,19 @@ fn main() -> Result<(), Error> {
 
 fn prepare_payload(query: &str) -> serde_json::Value {
     let system_content = format!(
-        "Generate a command based on the user's request, ensuring compatibility specifically with {}. Include only the command itself in your response, without any additional explanations or context. Do not format it in any way.",
+        r#"
+Generate a command based on the user's request, 
+ensuring compatibility specifically with {}. 
+Include only the command itself in your response, 
+without any additional explanations or context. 
+Do not format it in any way."#,
         env::consts::OS
     );
 
     let user_content = format!("What is the command to {}?", query);
 
     json!({
-        "model": "gpt-4-turbo",
+        "model": MODEL,
         "messages": [
             { "role": "system", "content": system_content },
             { "role": "user", "content": user_content }
